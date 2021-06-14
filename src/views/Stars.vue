@@ -60,7 +60,7 @@
 </style>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 import { Chart } from "highcharts-vue";
 export default {
   components: {
@@ -69,11 +69,11 @@ export default {
   data: function () {
     return {
       message: "Welcome to Vue.js!",
-      vue_stars: 100000,
-      angular_stars: 0,
-      ember_stars: 0,
-      svelte_stars: 0,
-      react_stars: 0,
+      vue_stars: "",
+      angular_stars: "",
+      ember_stars: "",
+      svelte_stars: "",
+      react_stars: "",
       chartStars: {
         chart: {
           type: "column",
@@ -117,65 +117,49 @@ export default {
         series: [
           {
             name: "Vue",
-            data: [4444],
-            // in order of x-axis, plug in "Vue.js", "Angular", "Ember", "Svelte", "React"
-            // [this.vue_stars, this.angular_stars, this.ember_stars, this.svelte_stars, this.react_stars]
+            data: [],
           },
           {
             name: "Angular",
-            data: [29000],
-            // [this.vue_forks, this.angular_forks, this.ember_forks, this.svelte_forks, this.react_forks]
+            data: [],
           },
           {
             name: "Ember",
-            data: [63000],
-            // [this.vue_watchers, this.angular_watchers, this.ember_watchers, this.svelte_watchers, this.react_watchers]
+            data: [],
           },
           {
             name: "Svelte",
-            data: [63000],
-            // [this.vue_watchers, this.angular_watchers, this.ember_watchers, this.svelte_watchers, this.react_watchers]
+            data: [],
           },
           {
             name: "React",
-            data: [63000],
-            // [this.vue_watchers, this.angular_watchers, this.ember_watchers, this.svelte_watchers, this.react_watchers]
+            data: [],
           },
         ],
       },
     };
   },
   created: function () {
-    // axios.get("https://api.github.com/repos/vuejs/vue").then((response) => {
-    //   this.vue_stars = response.data.stargazers_count;
-    //   this.vue_watchers = response.data.subscribers_count;
-    //   this.vue_forks = response.data.forks_count;
-    // });
-    // axios.get("https://api.github.com/repos/angular/angular.js").then((response) => {
-    //   this.angular_stars = response.data.stargazers_count;
-    //   this.angular_watchers = response.data.subscribers_count;
-    //   this.angular_forks = response.data.forks_count;
-    // });
-    // axios.get("https://api.github.com/repos/emberjs/ember.js").then((response) => {
-    //   this.ember_stars = response.data.stargazers_count;
-    //   this.ember_watchers = response.data.subscribers_count;
-    //   this.ember_forks = response.data.forks_count;
-    // });
-    // axios.get("https://api.github.com/repos/sveltejs/svelte").then((response) => {
-    //   this.svelte_stars = response.data.stargazers_count;
-    //   this.svelte_watchers = response.data.subscribers_count;
-    //   this.svelte_forks = response.data.forks_count;
-    // });
-    // axios.get("https://api.github.com/repos/facebook/react").then((response) => {
-    //   this.react_stars = response.data.stargazers_count;
-    //   this.react_watchers = response.data.subscribers_count;
-    //   this.react_forks = response.data.forks_count;
-    // });
-    // this.chartOptions.series[0].data = this.vue_stars;
-    // this.chartOptions.series[1].data = this.angular_stars;
-    // this.chartOptions.series[2].data = this.ember_stars;
-    // this.chartOptions.series[3].data = this.svelte_stars;
-    // this.chartOptions.series[4].data = this.react_stars;
+    axios.get("https://api.github.com/repos/vuejs/vue").then((response) => {
+      this.vue_stars = response.data.stargazers_count;
+      this.chartStars.series[0].data = [response.data.stargazers_count];
+    });
+    axios.get("https://api.github.com/repos/angular/angular.js").then((response) => {
+      this.angular_stars = response.data.stargazers_count;
+      this.chartStars.series[1].data = [response.data.stargazers_count];
+    });
+    axios.get("https://api.github.com/repos/emberjs/ember.js").then((response) => {
+      this.ember_stars = response.data.stargazers_count;
+      this.chartStars.series[2].data = [response.data.stargazers_count];
+    });
+    axios.get("https://api.github.com/repos/sveltejs/svelte").then((response) => {
+      this.svelte_stars = response.data.stargazers_count;
+      this.chartStars.series[3].data = [response.data.stargazers_count];
+    });
+    axios.get("https://api.github.com/repos/facebook/react").then((response) => {
+      this.react_stars = response.data.stargazers_count;
+      this.chartStars.series[4].data = [response.data.stargazers_count];
+    });
   },
   methods: {},
 };

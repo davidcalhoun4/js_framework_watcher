@@ -60,7 +60,7 @@
 </style>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 import { Chart } from "highcharts-vue";
 export default {
   components: {
@@ -69,11 +69,11 @@ export default {
   data: function () {
     return {
       message: "Welcome to Vue.js!",
-      vue_watchers: 100000,
-      angular_watchers: 0,
-      ember_watchers: 0,
-      svelte_watchers: 0,
-      react_watchers: 0,
+      vue_watchers: "",
+      angular_watchers: "",
+      ember_watchers: "",
+      svelte_watchers: "",
+      react_watchers: "",
       chartWatchers: {
         chart: {
           type: "column",
@@ -117,55 +117,49 @@ export default {
         series: [
           {
             name: "Vue",
-            data: [4444],
-            // in order of x-axis, plug in "Vue.js", "Angular", "Ember", "Svelte", "React"
-            // [this.vue_stars, this.angular_stars, this.ember_stars, this.svelte_stars, this.react_stars]
+            data: [],
           },
           {
             name: "Angular",
-            data: [29000],
-            // [this.vue_forks, this.angular_forks, this.ember_forks, this.svelte_forks, this.react_forks]
+            data: [],
           },
           {
             name: "Ember",
-            data: [63000],
-            // [this.vue_watchers, this.angular_watchers, this.ember_watchers, this.svelte_watchers, this.react_watchers]
+            data: [],
           },
           {
             name: "Svelte",
-            data: [63000],
-            // [this.vue_watchers, this.angular_watchers, this.ember_watchers, this.svelte_watchers, this.react_watchers]
+            data: [],
           },
           {
             name: "React",
-            data: [63000],
-            // [this.vue_watchers, this.angular_watchers, this.ember_watchers, this.svelte_watchers, this.react_watchers]
+            data: [],
           },
         ],
       },
     };
   },
   created: function () {
-    // axios.get("https://api.github.com/repos/vuejs/vue").then((response) => {
-    //   this.vue_watchers = response.data.subscribers_count;
-    // });
-    // axios.get("https://api.github.com/repos/angular/angular.js").then((response) => {
-    //   this.angular_watchers = response.data.subscribers_count;
-    // });
-    // axios.get("https://api.github.com/repos/emberjs/ember.js").then((response) => {
-    //   this.ember_watchers = response.data.subscribers_count;
-    // });
-    // axios.get("https://api.github.com/repos/sveltejs/svelte").then((response) => {
-    //   this.svelte_watchers = response.data.subscribers_count;
-    // });
-    // axios.get("https://api.github.com/repos/facebook/react").then((response) => {
-    //   this.react_watchers = response.data.subscribers_count;
-    // });
-    // this.chartOptions.series[0].data = this.vue_watchers;
-    // this.chartOptions.series[1].data = this.angular_watchers;
-    // this.chartOptions.series[2].data = this.ember_watchers;
-    // this.chartOptions.series[3].data = this.svelte_watchers;
-    // this.chartOptions.series[4].data = this.react_watchers;
+    axios.get("https://api.github.com/repos/vuejs/vue").then((response) => {
+      this.vue_watchers = response.data.subscribers_count;
+      this.chartWatchers.series[0].data = [response.data.subscribers_count];
+    });
+    axios.get("https://api.github.com/repos/angular/angular.js").then((response) => {
+      this.angular_watchers = response.data.subscribers_count;
+      this.chartWatchers.series[1].data = [response.data.subscribers_count];
+    });
+    axios.get("https://api.github.com/repos/emberjs/ember.js").then((response) => {
+      this.ember_watchers = response.data.subscribers_count;
+      this.chartWatchers.series[2].data = [response.data.subscribers_count];
+    });
+    axios.get("https://api.github.com/repos/sveltejs/svelte").then((response) => {
+      this.svelte_watchers = response.data.subscribers_count;
+      this.chartWatchers.series[3].data = [response.data.subscribers_count];
+    });
+    axios.get("https://api.github.com/repos/facebook/react").then((response) => {
+      this.react_watchers = response.data.subscribers_count;
+      this.chartWatchers.series[4].data = [response.data.subscribers_count];
+    });
   },
   methods: {},
 };

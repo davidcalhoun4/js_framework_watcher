@@ -2,9 +2,9 @@
   <div class="Forks">
     <h3>JavaScript Framework Watcher</h3>
     <hr />
-
-    <highcharts class="hc" :options="chartForks" ref="barChart"></highcharts>
-
+    <div>
+      <highcharts class="hc" :options="chartForks" ref="barChart"></highcharts>
+    </div>
     <p>Vue Forks: {{ vue_forks }}</p>
     <hr />
 
@@ -64,7 +64,7 @@
 </style>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 import { Chart } from "highcharts-vue";
 export default {
   components: {
@@ -73,11 +73,11 @@ export default {
   data: function () {
     return {
       message: "Welcome to Vue.js!",
-      vue_forks: 100000,
-      angular_forks: 0,
-      ember_forks: 0,
-      svelte_forks: 0,
-      react_forks: 0,
+      vue_forks: "",
+      angular_forks: "",
+      ember_forks: "",
+      svelte_forks: "",
+      react_forks: "",
       chartForks: {
         chart: {
           type: "column",
@@ -121,28 +121,28 @@ export default {
         series: [
           {
             name: "Vue",
-            data: [4444],
+            data: [],
             // in order of x-axis, plug in "Vue.js", "Angular", "Ember", "Svelte", "React"
             // [this.vue_stars, this.angular_stars, this.ember_stars, this.svelte_stars, this.react_stars]
           },
           {
             name: "Angular",
-            data: [28500],
+            data: [],
             // [this.vue_forks, this.angular_forks, this.ember_forks, this.svelte_forks, this.react_forks]
           },
           {
             name: "Ember",
-            data: [63000],
+            data: [],
             // [this.vue_watchers, this.angular_watchers, this.ember_watchers, this.svelte_watchers, this.react_watchers]
           },
           {
             name: "Svelte",
-            data: [63000],
+            data: [],
             // [this.vue_watchers, this.angular_watchers, this.ember_watchers, this.svelte_watchers, this.react_watchers]
           },
           {
             name: "React",
-            data: [63000],
+            data: [],
             // [this.vue_watchers, this.angular_watchers, this.ember_watchers, this.svelte_watchers, this.react_watchers]
           },
         ],
@@ -150,27 +150,26 @@ export default {
     };
   },
   created: function () {
-    // axios.get("https://api.github.com/repos/vuejs/vue").then((response) => {
-    //   this.vue_forks = response.data.forks_count;
-    // });
-    // axios.get("https://api.github.com/repos/angular/angular.js").then((response) => {
-    //   this.angular_forks = response.data.forks_count;
-    // });
-    // axios.get("https://api.github.com/repos/emberjs/ember.js").then((response) => {
-    //   this.ember_forks = response.data.forks_count;
-    // });
-    // axios.get("https://api.github.com/repos/sveltejs/svelte").then((response) => {
-    //   this.svelte_forks = response.data.forks_count;
-    // });
-    // axios.get("https://api.github.com/repos/facebook/react").then((response) => {
-    //   this.react_forks = response.data.forks_count;
-    // });
-    // this.chartOptions.series[0].data = this.vue_forks;
-    // this.chartOptions.series[1].data = this.angular_forks;
-    // this.chartOptions.series[2].data = this.ember_forks;
-    // this.chartOptions.series[3].data = this.svelte_forks;
-    // this.chartOptions.series[4].data = this.react_forks;
-    // put these above into their respective axios requests. this reassigns each chartOption series data to the fork axios request
+    axios.get("https://api.github.com/repos/vuejs/vue").then((response) => {
+      this.vue_forks = response.data.forks_count;
+      this.chartForks.series[0].data = [response.data.forks_count];
+    });
+    axios.get("https://api.github.com/repos/angular/angular.js").then((response) => {
+      this.angular_forks = response.data.forks_count;
+      this.chartForks.series[1].data = [response.data.forks_count];
+    });
+    axios.get("https://api.github.com/repos/emberjs/ember.js").then((response) => {
+      this.ember_forks = response.data.forks_count;
+      this.chartForks.series[2].data = [response.data.forks_count];
+    });
+    axios.get("https://api.github.com/repos/sveltejs/svelte").then((response) => {
+      this.svelte_forks = response.data.forks_count;
+      this.chartForks.series[3].data = [response.data.forks_count];
+    });
+    axios.get("https://api.github.com/repos/facebook/react").then((response) => {
+      this.react_forks = response.data.forks_count;
+      this.chartForks.series[4].data = [response.data.forks_count];
+    });
   },
   methods: {},
 };
