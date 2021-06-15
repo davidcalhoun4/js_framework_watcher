@@ -1,10 +1,13 @@
 <template>
   <div class="Stars">
-    <h3>JavaScript Framework Watcher</h3>
+    <!-- <h3>JavaScript Framework Watcher</h3> -->
     <hr />
+    <br />
 
     <highcharts class="hc" :options="chartStars" ref="barChart"></highcharts>
-
+    <br />
+    <br />
+    <br />
     <p>Vue Stars: {{ vue_stars }}</p>
     <hr />
     <p>Angular Stars: {{ angular_stars }}</p>
@@ -82,16 +85,16 @@ export default {
           text: "Stars",
         },
         xAxis: {
-          categories: ["Stars"],
+          categories: ["Frameworks"],
           crosshair: true,
           title: {
-            text: "Frameworks",
+            text: "",
           },
         },
         yAxis: {
           min: 0,
           title: {
-            text: "Count",
+            text: "Number of Stars",
           },
         },
         plotOptions: {

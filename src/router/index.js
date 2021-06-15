@@ -1,4 +1,5 @@
 import Vue from "vue";
+import Home from "../views/Home.vue";
 import VueRouter from "vue-router";
 import Watchers from "../views/Watchers.vue";
 import Stars from "../views/Stars.vue";
@@ -8,9 +9,9 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/watchers",
-    name: "Watchers",
-    component: Watchers,
+    path: "/",
+    name: "home",
+    component: Home,
   },
   {
     path: "/about",
@@ -29,6 +30,11 @@ const routes = [
     path: "/forks",
     name: "Forks",
     component: Forks,
+  },
+  {
+    path: "/watchers",
+    name: "Watchers",
+    component: Watchers,
   },
 ];
 

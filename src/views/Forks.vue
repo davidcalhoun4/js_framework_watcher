@@ -1,10 +1,13 @@
 <template>
   <div class="Forks">
-    <h3>JavaScript Framework Watcher</h3>
+    <!-- <h3>JavaScript Framework Watcher</h3> -->
     <hr />
-    <div>
-      <highcharts class="hc" :options="chartForks" ref="barChart"></highcharts>
-    </div>
+    <br />
+
+    <highcharts class="hc" :options="chartForks" ref="barChart"></highcharts>
+    <br />
+    <br />
+    <br />
     <p>Vue Forks: {{ vue_forks }}</p>
     <hr />
 
@@ -86,16 +89,16 @@ export default {
           text: "Forks",
         },
         xAxis: {
-          categories: ["Forks"],
+          categories: ["Frameworks"],
           crosshair: true,
           title: {
-            text: "Frameworks",
+            text: "",
           },
         },
         yAxis: {
           min: 0,
           title: {
-            text: "Count",
+            text: "Number of Forks",
           },
         },
         plotOptions: {

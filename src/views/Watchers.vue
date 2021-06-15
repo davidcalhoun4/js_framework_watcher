@@ -1,10 +1,13 @@
 <template>
   <div class="Watchers">
-    <h3>JavaScript Framework Watcher</h3>
+    <!-- <h3>JavaScript Framework Watcher</h3> -->
     <hr />
+    <br />
 
     <highcharts class="hc" :options="chartWatchers" ref="barChart"></highcharts>
-
+    <br />
+    <br />
+    <br />
     <p>Vue Watchers: {{ vue_watchers }}</p>
     <hr />
     <p>Angular Watchers: {{ angular_watchers }}</p>
@@ -82,16 +85,16 @@ export default {
           text: "Watchers",
         },
         xAxis: {
-          categories: ["Watchers"],
+          categories: ["Frameworks"],
           crosshair: true,
           title: {
-            text: "Frameworks",
+            text: "",
           },
         },
         yAxis: {
           min: 0,
           title: {
-            text: "Count",
+            text: "Number of Watchers",
           },
         },
         plotOptions: {
